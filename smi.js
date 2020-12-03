@@ -1,9 +1,10 @@
 $.fn.ShowMeImage = function (param, max_count, callback) {
     $(this).on("change", function () {
         $("" + param + "").html('');
-        var files = $(this)[0].files;
-        if (files.length > max_count) {
-            alert('Выберите не больше ' + max_count + ' файлов');
+        let files = $(this)[0].files;
+        let max = max_count ? max_count : 10 ;
+        if (files.length > max) {
+            alert('Выберите не больше ' + max + ' файлов');
             $(this).val('')
         } else {
             $.each(files, function (i, t) {
@@ -21,6 +22,8 @@ $.fn.ShowMeImage = function (param, max_count, callback) {
                 }
             })
         };
-        callback();
+        if(callback){
+            callback();
+        }
     });
 };
